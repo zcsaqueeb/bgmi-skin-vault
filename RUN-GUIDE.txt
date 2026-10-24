@@ -1,0 +1,69 @@
+# BGMI Vault — One Click Install & Run
+
+## Quick Start
+
+### Windows
+1. Unzip the folder
+2. **Double-click `BGMI-Vault-Start.bat`**
+3. Press any key when prompted
+4. Your browser opens at `http://localhost:3000`
+
+### macOS / Linux
+1. Unzip the folder
+2. Open Terminal, `cd` into the folder
+3. Run: `./BGMI-Vault-Start.sh`
+4. Your browser opens at `http://localhost:3000`
+
+---
+
+## What the start scripts do
+
+| Step | Action |
+|------|--------|
+| 1 | Check if **Bun** runtime is installed (installs it if missing) |
+| 2 | Run `bun install` to fetch all dependencies |
+| 3 | Run `bun run db:push` to create the SQLite database |
+| 4 | Run `bun run dev` to start the Next.js dev server |
+| 5 | Open your browser at `http://localhost:3000` |
+
+## Files in this package
+
+| File | Purpose |
+|------|---------|
+| `BGMI-Vault-Start.bat` | **Windows** — one click install + run (first time) |
+| `BGMI-Vault-Run.bat` | **Windows** — quick run (after first install) |
+| `BGMI-Vault-Start.sh` | **macOS/Linux** — one click install + run |
+| `src/` | All source code |
+| `prisma/schema.prisma` | Database schema |
+| `public/images/logo.png` | Official BGMI logo |
+| `.env` | Database URL + Telegram bot config |
+| `package.json` | Dependencies & scripts |
+
+## After first install
+
+Next time you want to run the app, just double-click **`BGMI-Vault-Run.bat`** (Windows) — it skips the install steps and starts the server directly.
+
+## Stopping the server
+
+Click the terminal/command window and press **Ctrl + C**.
+
+## Requirements
+
+- **Windows 10/11**, **macOS**, or **Linux**
+- **Bun** runtime (the start script installs it automatically)
+- Internet connection (first run only, for dependency install)
+
+## Troubleshooting
+
+**"Bun not found" on Windows**
+→ Open PowerShell as Administrator and run:
+```
+irm bun.sh/install.ps1 | iex
+```
+Then re-run `BGMI-Vault-Start.bat`.
+
+**Port 3000 already in use**
+→ Close other apps using port 3000, or edit `package.json` and change `-p 3000` to `-p 3001`.
+
+**Database errors**
+→ Run `bun run db:reset` to wipe and recreate the database.
